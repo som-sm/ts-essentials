@@ -673,6 +673,8 @@ function testIsTuple() {
     Assert<IsExact<IsTuple<{ length: 3 }>, never>>,
     Assert<IsExact<IsTuple<never[]>, never>>,
     Assert<IsExact<IsTuple<readonly never[]>, never>>,
+    Assert<IsExact<IsTuple<[]>, []>>,
+    Assert<IsExact<IsTuple<readonly []>, readonly []>>,
   ];
 }
 
