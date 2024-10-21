@@ -205,6 +205,7 @@ function testDeepNullable() {
     Assert<IsExact<DeepNullable<WeakSet<{ a: string }>>, WeakSet<{ a: string | null }>>>,
     Assert<IsExact<DeepNullable<[]>, []>>,
     Assert<IsExact<DeepNullable<readonly []>, readonly []>>,
+    Assert<IsExact<DeepNullable<never>, null>>,
     Assert<IsExact<DeepNullable<never[]>, null[]>>,
     Assert<IsExact<DeepNullable<readonly never[]>, readonly null[]>>,
     Assert<IsExact<DeepNullable<[1, 2, 3]>, [1 | null, 2 | null, 3 | null]>>,
@@ -271,6 +272,7 @@ function testDeepUndefinable() {
     Assert<IsExact<DeepUndefinable<readonly []>, readonly []>>,
     Assert<IsExact<DeepUndefinable<never[]>, undefined[]>>,
     Assert<IsExact<DeepUndefinable<readonly never[]>, readonly undefined[]>>,
+    Assert<IsExact<DeepUndefinable<never>, undefined>>,
     Assert<IsExact<DeepUndefinable<[1, 2, 3]>, [1 | undefined, 2 | undefined, 3 | undefined]>>,
     Assert<IsExact<DeepUndefinable<readonly [1, 2, 3]>, readonly [1 | undefined, 2 | undefined, 3 | undefined]>>,
     Assert<IsExact<DeepUndefinable<number[]>, (number | undefined)[]>>,
@@ -669,6 +671,8 @@ function testIsTuple() {
     Assert<IsExact<IsTuple<Array<number>>, never>>,
     Assert<IsExact<IsTuple<ReadonlyArray<number>>, never>>,
     Assert<IsExact<IsTuple<{ length: 3 }>, never>>,
+    Assert<IsExact<IsTuple<never[]>, never>>,
+    Assert<IsExact<IsTuple<readonly never[]>, never>>,
   ];
 }
 
